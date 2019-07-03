@@ -1,0 +1,47 @@
+Protocol 2                                  	                #Protocol 1 is fundamentally broken
+StrictModes yes                                                 #Protects from misconfiguration
+
+ListenAddress [ip-here]                                         #Listening address
+Port 22                                                         #Listening port. Normal 22
+
+AuthenticationMethods publickey                                 #Only public key authentication allowed
+PubkeyAuthentication yes                                        #Allow public key authentication
+HostKey /etc/ssh/ssh_host_ed25519_key                           #Only allow ECDSA pubic key authentication
+HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-ed25519  #Host keys the client should accepts
+KexAlgorithms curve25519-sha256                                 #Specifies the available KEX (Key Exchange) algorithms
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com    #Specifies the ciphers allowed
+MACs hmac-sha2-512,hmac-sha2-512-etm@openssh.com                #Specifies the available MAC alg.
+
+PermitRootLogin no                                              #Disable root login
+AllowUsers [username]                                           #Authorized SSH users are inside the admin group
+MaxAuthTries 5                                                  #Maximum allowed authentication attempts
+MaxSessions 2                                                   #Maximum allowed sessions by the user
+
+PasswordAuthentication no                                       #No username password authentication
+PermitEmptyPasswords no                                         #No empty password authentcation allowed
+IgnoreRhosts yes                                                #Dont read users rhost files
+HostbasedAuthentication no                                      #Disable host-based authentication
+ChallengeResponseAuthentication no                              #Unused authentication scheme
+X11Forwarding no                                                #Disable X11 forwarding
+
+LogLevel VERBOSE                                                #Fingerprint details of failed login attempts
+SyslogFacility AUTH                                             #Logging authentication and authorization related commands
+UseDNS no                                                       #Client from a location without proper DNS generate a warning in the logs
+
+PermitTunnel no                                                 #Only SSH connection and nothing else
+AllowTcpForwarding no                                           #Disablow tunneling out via SSH
+AllowStreamLocalForwarding no                                   #Disablow tunneling out via SSH
+GatewayPorts no                                                 #Disablow tunneling out via SSH
+AllowAgentForwarding no                                         #Do not allow agent forwardng
+
+Banner /etc/issue.net                                           #Show legal login banner
+PrintLastLog yes                                                #Show last login
+
+ClientAliveInterval 900                                         #Client timeout (15 minutes)
+ClientAliveCountMax 0                                           #This way enforces timeouts on the server side
+LoginGraceTime 30                                               #Authenticatin must happen within 30 seconds
+MaxStartups 2                                                   #Max concurrent SSH sessions
+TCPKeepAlive yes                                                #Do not use TCP keep alive
+
+AcceptEnv LANG LC_*                                             #Allow client to pass locale environment variables
+Subsystem sftp /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO     #Enable sFTP subsystem over SSH
