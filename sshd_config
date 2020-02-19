@@ -1,7 +1,7 @@
 Protocol 2                                  	                #Protocol 1 is fundamentally broken
 StrictModes yes                                                 #Protects from misconfiguration
 
-#ListenAddress [ip-here]                                         #Listening address
+#ListenAddress [ip-here]                                        #Listening address
 Port 22                                                         #Listening port. Normal 22
 
 AuthenticationMethods publickey                                 #Only public key authentication allowed
@@ -17,7 +17,7 @@ HostbasedAcceptedKeyTypes ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nis
 PubkeyAcceptedKeyTypes sk-ecdsa-sha2-nistp256@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,ssh-ed25519
 
 PermitRootLogin no                                              #Disable root login
-#AllowUsers [username]                                           #Authorized SSH users are inside the admin group
+#AllowUsers [username]                                          #Authorized SSH users are inside the admin group
 MaxAuthTries 5                                                  #Maximum allowed authentication attempts
 MaxSessions 2                                                   #Maximum allowed sessions by the user
 
