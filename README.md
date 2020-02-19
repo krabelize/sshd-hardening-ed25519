@@ -1,6 +1,8 @@
 # SSHD hardening with Ed25519 key pair authentication
 This configuration file hardens the autentication and sessions when using Ed25519. Read [this article](https://cryptsus.com/blog/how-to-secure-your-ssh-server-with-public-key-elliptic-curve-ed25519-crypto.html) for more information.
 
+Tested on OpenSSH 8.2
+
 # License
 Berkeley Software Distribution (BSD)
 
