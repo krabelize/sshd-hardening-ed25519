@@ -45,7 +45,7 @@ ClientAliveInterval 900                                         #Client timeout 
 ClientAliveCountMax 0                                           #This way enforces timeouts on the server side
 LoginGraceTime 30                                               #Authenticatin must happen within 30 seconds
 MaxStartups 2                                                   #Max concurrent SSH sessions
-TCPKeepAlive yes                                                #Do not use TCP keep alive
+TCPKeepAlive yes                                                #Use TCP keep alive
 
 AcceptEnv LANG LC_*                                             #Allow client to pass locale environment variables
 Subsystem sftp /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO     #Enable sFTP subsystem over SSH
